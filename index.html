@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codeWeAre — Kotlin Multiplatform studio pro mobilní produkty</title>
+    <meta name="description" content="codeWeAre builds and modernizes iOS and Android apps with Kotlin Multiplatform, backend-light delivery, and senior-controlled AI-assisted development.">
+    <meta property="og:title" content="codeWeAre — Kotlin Multiplatform studio">
+    <meta property="og:description" content="Mobile product delivery with Kotlin Multiplatform, backend-light architecture, and AI-assisted implementation under senior review.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #050505;
+            --gray: #1a1a1a;
+            --light-gray: #2a2a2a;
+            --white: #ffffff;
+            --off-white: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        section {
+            padding: 120px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: clamp(32px, 5vw, 64px);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 48px;
+        }
+
+        h3 {
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        p {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--off-white);
+            max-width: 600px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 24px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .logo a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        /* Services icons */
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 24px;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Team LinkedIn */
+        .team-member a {
+            display: inline-block;
+            margin-top: 12px;
+            color: var(--off-white);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .team-member a:hover {
+            color: var(--white);
+        }
+
+        .linkedin-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+            fill: currentColor;
+            vertical-align: middle;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        /* References */
+        .references {
+            background: var(--gray);
+            max-width: 100%;
+        }
+
+        .references-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reference-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            margin-top: 64px;
+        }
+
+        .reference-card {
+            padding: 32px;
+            border: 1px solid var(--light-gray);
+        }
+
+        .reference-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .reference-card .company {
+            font-size: 14px;
+            color: var(--off-white);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .reference-card p {
+            font-size: 15px;
+            color: var(--off-white);
+        }
+
+        .experience-note {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--light-gray);
+            font-size: 14px;
+            color: var(--off-white);
+        }
+
+        .nav-links a {
+            color: var(--off-white);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .language-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--off-white);
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .language-toggle button {
+            padding: 0;
+            background: none;
+            border: 0;
+            color: inherit;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .language-toggle button[aria-pressed="true"] {
+            color: var(--white);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 80px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--off-white);
+            margin-bottom: 64px;
+            max-width: 500px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 48px;
+            background: var(--white);
+            color: var(--black);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 2px solid var(--white);
+            transition: all 0.3s;
+            width: fit-content;
+        }
+
+        .cta-button:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* Services */
+        .services {
+            background: var(--gray);
+            max-width: 100%;
+        }
+
+        .services-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 48px;
+            margin-top: 64px;
+        }
+
+        .service-card {
+            padding: 40px;
+            border: 1px solid var(--light-gray);
+            background: var(--black);
+            transition: border-color 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--white);
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            font-size: 16px;
+            color: var(--off-white);
+        }
+
+        .card-label {
+            display: block;
+            font-size: 13px;
+            color: var(--off-white);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+
+        .service-number {
+            font-size: 14px;
+            color: var(--off-white);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        /* Why Us */
+        .why-us-list {
+            list-style: none;
+            margin-top: 64px;
+        }
+
+        .why-us-list li {
+            padding: 32px 0;
+            border-bottom: 1px solid var(--light-gray);
+            font-size: clamp(20px, 3vw, 28px);
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .why-us-list li:last-child {
+            border-bottom: none;
+        }
+
+        .not-fit {
+            margin-top: 96px;
+        }
+
+        .not-fit .why-us-list li {
+            font-size: clamp(18px, 2.4vw, 24px);
+        }
+
+        .check {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--white);
+            flex-shrink: 0;
+        }
+
+        .check::after {
+            content: '✓';
+            display: block;
+            text-align: center;
+            line-height: 20px;
+            font-size: 16px;
+        }
+
+        .cross::after {
+            content: '×';
+            line-height: 18px;
+            font-size: 20px;
+        }
+
+        /* Team */
+        .team {
+            background: var(--gray);
+            max-width: 100%;
+        }
+
+        .team-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-top: 64px;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 32px;
+            border: 1px solid var(--light-gray);
+        }
+
+        .team-avatar {
+            width: 96px;
+            height: 96px;
+            background: var(--light-gray);
+            border: 1px solid var(--white);
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.04em;
+        }
+
+        .team-member h4 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .team-member p {
+            font-size: 14px;
+            color: var(--off-white);
+            margin: 0 auto;
+        }
+
+        /* Contact */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 80px;
+            margin-top: 64px;
+        }
+
+        .contact-info h3 {
+            font-size: 32px;
+            margin-bottom: 32px;
+        }
+
+        .contact-info p {
+            margin-bottom: 16px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            width: fit-content;
+            margin-top: 24px;
+            padding: 20px 48px;
+            background: var(--white);
+            color: var(--black);
+            border: 2px solid var(--white);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s;
+        }
+
+        .contact-button:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .contact-email {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            padding: 48px 24px;
+            text-align: center;
+            border-top: 1px solid var(--light-gray);
+            color: var(--off-white);
+            font-size: 14px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 24px;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                gap: 12px 18px;
+            }
+
+            section {
+                padding: 80px 24px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo"><a href="#">codeWeAre</a></div>
+        <div class="nav-links">
+            <a href="#nabidky" data-i18n="navOffers">Nabídky</a>
+            <a href="#pro-koho" data-i18n="navAudience">Pro koho</a>
+            <a href="#zkusenosti" data-i18n="navExperience">Zkušenosti</a>
+            <a href="#tym" data-i18n="navTeam">Tým</a>
+            <a href="#kontakt" data-i18n="navContact">Kontakt</a>
+            <div class="language-toggle" aria-label="Language">
+                <button type="button" data-lang-button="cs" aria-pressed="true">CZ</button>
+                <span>/</span>
+                <button type="button" data-lang-button="en" aria-pressed="false">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1 data-i18n="heroTitle">Mobilní aplikace přes Kotlin Multiplatform. Bez dvou týmů. Bez těžkého backendu.</h1>
+        <p class="hero-subtitle" data-i18n="heroSubtitle">Modernizujeme existující iOS/Android appky a stavíme nové mobilní produkty s lehkou backend vrstvou. Seniorní architektura, AI-assisted delivery, výstup pod kontrolou.</p>
+        <a href="mailto:info@codeweare.cz?subject=KMP%20fit%20call" class="cta-button" data-i18n="heroCta">Zjistit fit během 5 dnů</a>
+    </section>
+
+    <!-- Services / Value Proposition Canvas -->
+    <section class="services" id="sluzby">
+        <div class="services-inner">
+            <h2 data-i18n="workTitle">Jak pracujeme</h2>
+            <p style="margin-bottom: 48px; max-width: 700px;" data-i18n="workIntro">
+                Pokrýváme celý mobilní produktový cyklus: UX/UI návrh, analytiku, doménový model, architekturu i samotný kód. KMP používáme pro společný core, lehký managed nebo open-source backend pro nový základ a AI jako akcelerátor pod seniorní kontrolou.
+            </p>
+            <div class="service-grid">
+                <div class="service-card">
+                    <img class="service-icon" src="codeweare-mobile-v2.svg" alt="" width="64" height="64">
+                    <h3>KMP shared core</h3>
+                    <p data-i18n="sharedCoreText">Business logika, API klienti, modely, validace a testy sdílené mezi iOS a Androidem. Méně duplicity, rychlejší změny, konzistentnější produkt.</p>
+                </div>
+                <div class="service-card">
+                    <img class="service-icon" src="codeweare-servers-v3.svg" alt="" width="64" height="64">
+                    <h3>Backend-light stack</h3>
+                    <p data-i18n="backendText">Auth, role, data, storage, realtime-lite a funkce v omezeném scope. Managed nebo open-source backend bez stavby složitého custom systému.</p>
+                </div>
+                <div class="service-card">
+                    <img class="service-icon" src="codeweare-chip-v1.svg" alt="" width="64" height="64">
+                    <h3 data-i18n="aiTitle">AI-assisted UI/UX & delivery pod kontrolou</h3>
+                    <p data-i18n="aiText">AI používáme na návrh obrazovek, produktové flow, scaffolding, implementaci, testy a refactoring. Výstup prochází senior review, CI a transparentním handoffem.</p>
+                </div>
+            </div>
+
+            <h2 id="nabidky" style="margin-top: 96px;" data-i18n="offersTitle">Co dodáváme</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <span class="card-label" data-i18n="offerScopeLabel">01 / Scope</span>
+                    <h3>KMP Fit & Scope Sprint</h3>
+                    <p data-i18n="offerScopeText">Během 5 dnů rozhodneme KMP ano/ne/kde, co sdílet, jaká jsou rizika, první hodnotový slice a realistická roadmapa.</p>
+                </div>
+                <div class="service-card">
+                    <span class="card-label" data-i18n="offerPilotLabel">02 / Pilot</span>
+                    <h3>Shared Core Pilot</h3>
+                    <p data-i18n="offerPilotText">Vybereme jednu smysluplnou část appky a dodáme ji v KMP: shared module, testy, CI a dokumentované architecture decisions.</p>
+                </div>
+                <div class="service-card">
+                    <span class="card-label">03 / MVP</span>
+                    <h3>Backend-light KMP MVP</h3>
+                    <p data-i18n="offerMvpText">Postavíme první verzi pro iOS a Android s vhodným managed nebo open-source backendem: auth, role, data, storage a jednoduché workflow bez těžkého backendu.</p>
+                </div>
+                <div class="service-card">
+                    <span class="card-label" data-i18n="offerModernLabel">04 / Modernizace</span>
+                    <h3 data-i18n="offerModernTitle">Reskin + Architecture Retrofit</h3>
+                    <p data-i18n="offerModernText">Modernizujeme UX existující appky a zároveň narovnáme architekturu, aby změna nebyla jen kosmetická.</p>
+                </div>
+            </div>
+
+            <h2 id="pro-koho" style="margin-top: 96px;" data-i18n="audienceTitle">Pro koho to je</h2>
+            <ul class="why-us-list">
+                <li><span class="check"></span><span data-i18n="audienceOne">Máte iOS i Android aplikaci a změny děláte dvakrát</span></li>
+                <li><span class="check"></span><span data-i18n="audienceTwo">Chystáte redesign, replatforming nebo novou generaci appky</span></li>
+                <li><span class="check"></span><span data-i18n="audienceThree">Stavíte nový mobilní produkt, kde stačí lehký managed nebo open-source backend</span></li>
+                <li><span class="check"></span><span data-i18n="audienceFour">Potřebujete seniorní vedení, ne jen vývojářskou kapacitu</span></li>
+                <li><span class="check"></span><span data-i18n="audienceFive">Nechcete čistě AI-generovaný výstup bez review, testů a ownershipu</span></li>
+            </ul>
+
+            <div class="not-fit">
+                <h2 data-i18n="notFitTitle">Kdy nejsme dobrý fit</h2>
+                <ul class="why-us-list">
+                    <li><span class="check cross"></span><span data-i18n="notFitOne">Jednoduchá levná appka bez dlouhodobé hodnoty</span></li>
+                    <li><span class="check cross"></span><span data-i18n="notFitTwo">Projekt, kde hlavní hodnota leží ve složitém custom backendu</span></li>
+                    <li><span class="check cross"></span><span data-i18n="notFitThree">Enterprise core systém, rozsáhlé middleware nebo pricing/billing engine</span></li>
+                    <li><span class="check cross"></span><span data-i18n="notFitFour">Čistý design reskin bez architektonické nebo produktové vrstvy</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="references" id="zkusenosti">
+        <div class="references-inner">
+            <h2 data-i18n="experienceTitle">Zkušenosti</h2>
+            <div class="reference-grid">
+                <div class="reference-card">
+                    <h3 data-i18n="experienceEnterpriseTitle">Enterprise KMP delivery</h3>
+                    <span class="company" data-i18n="experienceEnterpriseLabel">Relevantní zkušenost z velké KMP aplikace</span>
+                    <p data-i18n="experienceEnterpriseText">Praktická zkušenost s modernizací velké iOS/Android aplikace, sdílenou KMP logikou, CI a platformní integrací.</p>
+                    <div class="experience-note" data-i18n="experienceEnterpriseNote">Know-how z enterprise prostředí přenášíme do menších, rychlejších týmů.</div>
+                </div>
+                <div class="reference-card">
+                    <h3 data-i18n="experienceModernTitle">Existing app modernization</h3>
+                    <span class="company" data-i18n="experienceModernLabel">Pro firmy s existující iOS/Android appkou</span>
+                    <p data-i18n="experienceModernText">Audit shared/non-shared hranic, migrační roadmapa, nový UI layer a postupné vytahování business logiky do KMP.</p>
+                    <div class="experience-note" data-i18n="experienceModernNote">Cíl: rychlejší roadmapa bez big-bang rewrite.</div>
+                </div>
+                <div class="reference-card">
+                    <h3>Backend-light MVP</h3>
+                    <span class="company" data-i18n="experienceMvpLabel">Pro nové mobilní produkty bez těžkého backendu</span>
+                    <p data-i18n="experienceMvpText">KMP appka pro iOS a Android s managed nebo open-source backendem pro auth, role, data, storage a jednoduchou administraci.</p>
+                    <div class="experience-note" data-i18n="experienceMvpNote">Cíl: validovat produkt bez vlastního backend týmu.</div>
+                </div>
+                <div class="reference-card">
+                    <h3 data-i18n="experienceCoreTitle">Shared core extraction</h3>
+                    <span class="company" data-i18n="experienceCoreLabel">Pro týmy s duplicitní business logikou</span>
+                    <p data-i18n="experienceCoreText">Jeden hodnotový slice převedený do KMP shared core včetně modelů, API klientů, validací, use cases a testů.</p>
+                    <div class="experience-note" data-i18n="experienceCoreNote">Cíl: ověřit KMP na reálné části produktu.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team" id="tym">
+        <div class="team-inner">
+            <h2 data-i18n="teamTitle">Tým</h2>
+            <p data-i18n="teamIntro">Seniorní mobilní vývoj, KMP architektura a AI agent pro rychlejší delivery.</p>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-avatar" aria-hidden="true">JM</div>
+                    <h4>Honza</h4>
+                    <p>iOS / KMP</p>
+                    <a href="https://www.linkedin.com/in/jan-moravek-74a28767/" target="_blank" rel="noopener">
+                        <svg class="linkedin-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar" aria-hidden="true">PS</div>
+                    <h4>Pavel</h4>
+                    <p>Android / KMP</p>
+                    <a href="https://www.linkedin.com/in/savrovp/" target="_blank" rel="noopener">
+                        <svg class="linkedin-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar" aria-hidden="true">AI</div>
+                    <h4>Karel</h4>
+                    <p data-i18n="karelRole">AI agent pro scaffolding, testy, refactoring a handoffy pod lidskou kontrolou.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="kontakt">
+        <h2 data-i18n="contactTitle">Kontakt</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3 data-i18n="contactHeading">Zjistíme, jestli je váš projekt fit pro KMP + backend-light delivery.</h3>
+                <p data-i18n="contactText">Během úvodního callu ověříme, jestli dává smysl KMP, co má být shared, jestli stačí managed/open-source backend nebo existující API a jaký scope má první bezpečný krok.</p>
+                <p style="margin-top: 32px;"><a class="contact-email" href="mailto:info@codeweare.cz">info@codeweare.cz</a></p>
+                <p data-i18n="contactLocation">Praha, CZ</p>
+            </div>
+            <a class="contact-button" href="mailto:info@codeweare.cz?subject=KMP%20fit%20call" data-i18n="contactCta">Zjistit fit</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p data-i18n="footer">&copy; 2026 codeWeAre — Všechna práva vyhrazena</p>
+    </footer>
+    <script>
+        const translations = {
+            cs: {
+                title: 'codeWeAre — Kotlin Multiplatform studio pro mobilní produkty',
+                metaDescription: 'codeWeAre staví a modernizuje iOS a Android aplikace přes Kotlin Multiplatform, backend-light delivery a AI-assisted vývoj pod seniorní kontrolou.',
+                navOffers: 'Nabídky',
+                navAudience: 'Pro koho',
+                navExperience: 'Zkušenosti',
+                navTeam: 'Tým',
+                navContact: 'Kontakt',
+                heroTitle: 'Mobilní aplikace přes Kotlin Multiplatform. Bez dvou týmů. Bez těžkého backendu.',
+                heroSubtitle: 'Modernizujeme existující iOS/Android appky a stavíme nové mobilní produkty s lehkou backend vrstvou. Seniorní architektura, AI-assisted delivery, výstup pod kontrolou.',
+                heroCta: 'Zjistit fit během 5 dnů',
+                workTitle: 'Jak pracujeme',
+                workIntro: 'Pokrýváme celý mobilní produktový cyklus: UX/UI návrh, analytiku, doménový model, architekturu i samotný kód. KMP používáme pro společný core, lehký managed nebo open-source backend pro nový základ a AI jako akcelerátor pod seniorní kontrolou.',
+                sharedCoreText: 'Business logika, API klienti, modely, validace a testy sdílené mezi iOS a Androidem. Méně duplicity, rychlejší změny, konzistentnější produkt.',
+                backendText: 'Auth, role, data, storage, realtime-lite a funkce v omezeném scope. Managed nebo open-source backend bez stavby složitého custom systému.',
+                aiTitle: 'AI-assisted UI/UX & delivery pod kontrolou',
+                aiText: 'AI používáme na návrh obrazovek, produktové flow, scaffolding, implementaci, testy a refactoring. Výstup prochází senior review, CI a transparentním handoffem.',
+                offersTitle: 'Co dodáváme',
+                offerScopeLabel: '01 / Scope',
+                offerScopeText: 'Během 5 dnů rozhodneme KMP ano/ne/kde, co sdílet, jaká jsou rizika, první hodnotový slice a realistická roadmapa.',
+                offerPilotLabel: '02 / Pilot',
+                offerPilotText: 'Vybereme jednu smysluplnou část appky a dodáme ji v KMP: shared module, testy, CI a dokumentované architecture decisions.',
+                offerMvpText: 'Postavíme první verzi pro iOS a Android s vhodným managed nebo open-source backendem: auth, role, data, storage a jednoduché workflow bez těžkého backendu.',
+                offerModernLabel: '04 / Modernizace',
+                offerModernTitle: 'Reskin + Architecture Retrofit',
+                offerModernText: 'Modernizujeme UX existující appky a zároveň narovnáme architekturu, aby změna nebyla jen kosmetická.',
+                audienceTitle: 'Pro koho to je',
+                audienceOne: 'Máte iOS i Android aplikaci a změny děláte dvakrát',
+                audienceTwo: 'Chystáte redesign, replatforming nebo novou generaci appky',
+                audienceThree: 'Stavíte nový mobilní produkt, kde stačí lehký managed nebo open-source backend',
+                audienceFour: 'Potřebujete seniorní vedení, ne jen vývojářskou kapacitu',
+                audienceFive: 'Nechcete čistě AI-generovaný výstup bez review, testů a ownershipu',
+                notFitTitle: 'Kdy nejsme dobrý fit',
+                notFitOne: 'Jednoduchá levná appka bez dlouhodobé hodnoty',
+                notFitTwo: 'Projekt, kde hlavní hodnota leží ve složitém custom backendu',
+                notFitThree: 'Enterprise core systém, rozsáhlé middleware nebo pricing/billing engine',
+                notFitFour: 'Čistý design reskin bez architektonické nebo produktové vrstvy',
+                experienceTitle: 'Zkušenosti',
+                experienceEnterpriseTitle: 'Enterprise KMP delivery',
+                experienceEnterpriseLabel: 'Relevantní zkušenost z velké KMP aplikace',
+                experienceEnterpriseText: 'Praktická zkušenost s modernizací velké iOS/Android aplikace, sdílenou KMP logikou, CI a platformní integrací.',
+                experienceEnterpriseNote: 'Know-how z enterprise prostředí přenášíme do menších, rychlejších týmů.',
+                experienceModernTitle: 'Existing app modernization',
+                experienceModernLabel: 'Pro firmy s existující iOS/Android appkou',
+                experienceModernText: 'Audit shared/non-shared hranic, migrační roadmapa, nový UI layer a postupné vytahování business logiky do KMP.',
+                experienceModernNote: 'Cíl: rychlejší roadmapa bez big-bang rewrite.',
+                experienceMvpLabel: 'Pro nové mobilní produkty bez těžkého backendu',
+                experienceMvpText: 'KMP appka pro iOS a Android s managed nebo open-source backendem pro auth, role, data, storage a jednoduchou administraci.',
+                experienceMvpNote: 'Cíl: validovat produkt bez vlastního backend týmu.',
+                experienceCoreTitle: 'Shared core extraction',
+                experienceCoreLabel: 'Pro týmy s duplicitní business logikou',
+                experienceCoreText: 'Jeden hodnotový slice převedený do KMP shared core včetně modelů, API klientů, validací, use cases a testů.',
+                experienceCoreNote: 'Cíl: ověřit KMP na reálné části produktu.',
+                teamTitle: 'Tým',
+                teamIntro: 'Seniorní mobilní vývoj, KMP architektura a AI agent pro rychlejší delivery.',
+                karelRole: 'AI agent pro scaffolding, testy, refactoring a handoffy pod lidskou kontrolou.',
+                contactTitle: 'Kontakt',
+                contactHeading: 'Zjistíme, jestli je váš projekt fit pro KMP + backend-light delivery.',
+                contactText: 'Během úvodního callu ověříme, jestli dává smysl KMP, co má být shared, jestli stačí managed/open-source backend nebo existující API a jaký scope má první bezpečný krok.',
+                contactLocation: 'Praha, CZ',
+                contactCta: 'Zjistit fit',
+                footer: '© 2026 codeWeAre — Všechna práva vyhrazena'
+            },
+            en: {
+                title: 'codeWeAre — Kotlin Multiplatform studio for mobile products',
+                metaDescription: 'codeWeAre builds and modernizes iOS and Android apps with Kotlin Multiplatform, backend-light delivery, and senior-controlled AI-assisted development.',
+                navOffers: 'Offers',
+                navAudience: 'For whom',
+                navExperience: 'Experience',
+                navTeam: 'Team',
+                navContact: 'Contact',
+                heroTitle: 'Mobile apps with Kotlin Multiplatform. Without two teams. Without a heavy backend.',
+                heroSubtitle: 'We modernize existing iOS/Android apps and build new mobile products with a lightweight backend layer. Senior architecture, AI-assisted delivery, output under control.',
+                heroCta: 'Check the fit in 5 days',
+                workTitle: 'How we work',
+                workIntro: 'We cover the full mobile product cycle: UX/UI design, analysis, domain modeling, architecture, and the actual code. We use KMP for the shared core, a lightweight managed or open-source backend for the foundation, and AI as an accelerator under senior control.',
+                sharedCoreText: 'Business logic, API clients, models, validation, and tests shared between iOS and Android. Less duplication, faster changes, and a more consistent product.',
+                backendText: 'Auth, roles, data, storage, realtime-lite, and scoped functions. Managed or open-source backend without building a heavy custom system.',
+                aiTitle: 'AI-assisted UI/UX & delivery under control',
+                aiText: 'We use AI for screen concepts, product flows, scaffolding, implementation, tests, and refactoring. Output goes through senior review, CI, and transparent handoffs.',
+                offersTitle: 'What we deliver',
+                offerScopeLabel: '01 / Scope',
+                offerScopeText: 'In 5 days we decide whether KMP fits, where it fits, what should be shared, what the risks are, the first valuable slice, and a realistic roadmap.',
+                offerPilotLabel: '02 / Pilot',
+                offerPilotText: 'We choose one meaningful part of the app and deliver it in KMP: shared module, tests, CI, and documented architecture decisions.',
+                offerMvpText: 'We build the first iOS and Android version with a suitable managed or open-source backend: auth, roles, data, storage, and a simple workflow without a heavy backend.',
+                offerModernLabel: '04 / Modernization',
+                offerModernTitle: 'Reskin + Architecture Retrofit',
+                offerModernText: 'We modernize the UX of an existing app and straighten the architecture so the change is not only cosmetic.',
+                audienceTitle: 'Who it is for',
+                audienceOne: 'You have both iOS and Android apps and ship the same changes twice',
+                audienceTwo: 'You are preparing a redesign, replatforming, or a new generation of the app',
+                audienceThree: 'You are building a new mobile product where a lightweight managed or open-source backend is enough',
+                audienceFour: 'You need senior guidance, not only development capacity',
+                audienceFive: 'You do not want purely AI-generated output without review, tests, and ownership',
+                notFitTitle: 'When we are not a good fit',
+                notFitOne: 'A simple low-cost app without long-term value',
+                notFitTwo: 'A project where the main value sits in a complex custom backend',
+                notFitThree: 'Enterprise core systems, large middleware, or pricing/billing engines',
+                notFitFour: 'A pure design reskin without architecture or product work',
+                experienceTitle: 'Experience',
+                experienceEnterpriseTitle: 'Enterprise KMP delivery',
+                experienceEnterpriseLabel: 'Relevant experience from a large KMP app',
+                experienceEnterpriseText: 'Hands-on experience modernizing a large iOS/Android app with shared KMP logic, CI, and platform integration.',
+                experienceEnterpriseNote: 'We bring enterprise-grade know-how into smaller, faster teams.',
+                experienceModernTitle: 'Existing app modernization',
+                experienceModernLabel: 'For companies with an existing iOS/Android app',
+                experienceModernText: 'Audit of shared/non-shared boundaries, migration roadmap, new UI layer, and gradual extraction of business logic into KMP.',
+                experienceModernNote: 'Goal: faster roadmap without a big-bang rewrite.',
+                experienceMvpLabel: 'For new mobile products without a heavy backend',
+                experienceMvpText: 'A KMP app for iOS and Android with a managed or open-source backend for auth, roles, data, storage, and simple administration.',
+                experienceMvpNote: 'Goal: validate the product without a dedicated backend team.',
+                experienceCoreTitle: 'Shared core extraction',
+                experienceCoreLabel: 'For teams with duplicated business logic',
+                experienceCoreText: 'One valuable slice moved into a KMP shared core, including models, API clients, validations, use cases, and tests.',
+                experienceCoreNote: 'Goal: validate KMP on a real part of the product.',
+                teamTitle: 'Team',
+                teamIntro: 'Senior mobile development, KMP architecture, and an AI agent for faster delivery.',
+                karelRole: 'AI agent for scaffolding, tests, refactoring, and handoffs under human control.',
+                contactTitle: 'Contact',
+                contactHeading: 'Let’s find out whether your project fits KMP + backend-light delivery.',
+                contactText: 'During the intro call we check whether KMP makes sense, what should be shared, whether a managed/open-source backend or an existing API is enough, and what the first safe step should be.',
+                contactLocation: 'Prague, CZ',
+                contactCta: 'Check the fit',
+                footer: '© 2026 codeWeAre — All rights reserved'
+            }
+        };
+
+        function applyLanguage(language) {
+            const dictionary = translations[language] || translations.cs;
+
+            document.documentElement.lang = language;
+            document.title = dictionary.title;
+            document.querySelector('meta[name="description"]').setAttribute('content', dictionary.metaDescription);
+            document.querySelector('meta[property="og:title"]').setAttribute('content', dictionary.title);
+            document.querySelector('meta[property="og:description"]').setAttribute('content', dictionary.metaDescription);
+
+            document.querySelectorAll('[data-i18n]').forEach((element) => {
+                const key = element.dataset.i18n;
+                if (dictionary[key]) {
+                    element.textContent = dictionary[key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
+                const key = element.dataset.i18nPlaceholder;
+                if (dictionary[key]) {
+                    element.placeholder = dictionary[key];
+                }
+            });
+
+            document.querySelectorAll('[data-lang-button]').forEach((button) => {
+                button.setAttribute('aria-pressed', String(button.dataset.langButton === language));
+            });
+
+            localStorage.setItem('codeweare-language', language);
+        }
+
+        document.querySelectorAll('[data-lang-button]').forEach((button) => {
+            button.addEventListener('click', () => applyLanguage(button.dataset.langButton));
+        });
+
+        applyLanguage(localStorage.getItem('codeweare-language') || 'cs');
+    </script>
+</body>
+</html>
